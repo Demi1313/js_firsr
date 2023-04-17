@@ -52,3 +52,46 @@ function qsort(arr) { // метод быстрой сортировки
 }
 let b = [10, 5, 2, 123, 18, 23];
 console.log(qsort(b));
+
+function binarySearch(value, list) { // бинарный поиск
+	let first    = 0;                // начальный индекс в массиве
+	let last     = list.length - 1;  // конечный индекс
+	let position = -1;
+	let found    = false;
+	let middle;
+
+	while (found === false && first <= last) {
+		middle = Math.floor((first + last) / 2);
+
+		if (list[middle] == value) {
+			found = true;
+			position = middle;
+		} else if (list[middle] > value){ // значение в нижней части списка
+			last = middle - 1;
+		} else {  // значение в верхней части списка
+			first = middle + 1;
+		}
+	}
+	return position;
+}
+let c = [10, 5, 2, 123, 18, 23, 34, 87, 52, 7];
+console.log(binarySearch(123, qsort(c)));
+
+
+
+const arr = [10, 57, 2, 123, 18, 23, 6, 14, 32];
+function selectSort(array) { // сортировка выбором
+	for (let i = 0; i < array.length; i++) {
+		let indexMin = i;
+		for (let j = i + 1; j < array.length; j++) {
+			if (array[j] < array[indexMin]) {
+				indexMin = j;
+			}
+		}
+		let tmp = array[i];
+		array[i] = array[indexMin];
+		array[indexMin] = tmp;
+	}
+	return array;
+}
+console.log(selectSort(arr));
